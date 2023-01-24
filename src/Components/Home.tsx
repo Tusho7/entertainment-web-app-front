@@ -7,29 +7,12 @@ import SearchIcon from "../Images/icon-search.svg";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import axios from "axios";
-
-interface DataTypes {
-  id: number;
-  title: string;
-  thumbnail: {
-    regular: {
-      small: string;
-      medium: string;
-      large: string;
-    };
-  };
-  year: number;
-  category: string;
-  rating: string;
-  isBookmarked: boolean;
-  isTrending: boolean;
-}
+import { DataTypes } from "../types/data-type";
 
 function Home() {
   const [searchTerm, setSearchTerm] = useState("");
   const [listItems, setListItems] = useState<DataTypes[]>([]);
 
-  console.log(listItems);
   useEffect(() => {
     const data = async () => {
       const res = await axios.get(
@@ -229,6 +212,7 @@ const RecommendedDiv = styled.div`
   column-gap: 15px;
   grid-template-columns: auto auto;
   overflow-x: hidden;
+  padding-bottom: 61px;
 `;
 
 const RecommendedPictures = styled.img`
