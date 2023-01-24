@@ -4,6 +4,8 @@ import MoviesLogo from "../Images/icon-nav-movies.svg";
 import TvseriesLogo from "../Images/icon-nav-tv-series.svg";
 import BookmarkLogo from "../Images/icon-nav-bookmark.svg";
 import SearchIcon from "../Images/icon-search.svg";
+import EmptyBookmark from "../Images/icon-bookmark-empty.svg";
+import FullBookmark from "../Images/icon-bookmark-full.svg";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -66,9 +68,21 @@ function Home() {
               {trendingFilms.map((trending) => {
                 return (
                   <div>
-                    <TrendingImg
-                      src={`https://entertainment-web-u5fj.onrender.com/allimages/${trending.thumbnail.regular.small}`}
-                    />
+                    <ImageAndBookmarkDiv>
+                      <TrendingImg
+                        src={`https://entertainment-web-u5fj.onrender.com/allimages/${trending.thumbnail.regular.small}`}
+                      />
+
+                      {trending.isBookmarked ? (
+                        <BookmarkDiv>
+                          <img src={FullBookmark} />
+                        </BookmarkDiv>
+                      ) : (
+                        <BookmarkDiv>
+                          <img src={EmptyBookmark} />
+                        </BookmarkDiv>
+                      )}
+                    </ImageAndBookmarkDiv>
 
                     <TrendingLists>
                       <TrendingYearCategoryAndRating>
@@ -104,9 +118,20 @@ function Home() {
           {filteredMovies.map((object) => {
             return (
               <div>
-                <RecommendedPictures
-                  src={`https://entertainment-web-u5fj.onrender.com/allimages/${object.thumbnail.regular.small}`}
-                />
+                <ImageAndBookmarkDiv>
+                  <RecommendedPictures
+                    src={`https://entertainment-web-u5fj.onrender.com/allimages/${object.thumbnail.regular.small}`}
+                  />
+                  {object.isBookmarked ? (
+                    <BookmarkDiv>
+                      <img src={FullBookmark} />
+                    </BookmarkDiv>
+                  ) : (
+                    <BookmarkDiv>
+                      <img src={EmptyBookmark} />
+                    </BookmarkDiv>
+                  )}
+                </ImageAndBookmarkDiv>
                 <DetailsDiv>
                   <Details>{object.year}</Details>
                   {object.category === "Movie" && (
@@ -165,6 +190,26 @@ const TrendingDiv = styled.div`
   font-size: 15px;
   line-height: 19px;
   color: #ffffff;
+`;
+
+const ImageAndBookmarkDiv = styled.div`
+  position: relative;
+`;
+
+const BookmarkDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  background: #10141e;
+  mix-blend-mode: normal;
+  opacity: 0.7;
+  border-radius: 50%;
+  overflow: hidden;
 `;
 
 const TrendingLists = styled.div`

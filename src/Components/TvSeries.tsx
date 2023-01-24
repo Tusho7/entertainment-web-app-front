@@ -4,6 +4,8 @@ import MoviesLogo from "../Images/icon-nav-movies.svg";
 import TvseriesLogo from "../Images/icon-nav-tv-series.svg";
 import BookmarkLogo from "../Images/icon-nav-bookmark.svg";
 import SearchIcon from "../Images/icon-search.svg";
+import EmptyBookmark from "../Images/icon-bookmark-empty.svg";
+import FullBookmark from "../Images/icon-bookmark-full.svg";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -65,10 +67,20 @@ function TvSeries() {
             {filteredTvSeries.map((tvseries) => {
               return (
                 <div>
-                  <TvSeriesPictures
-                    src={`https://entertainment-web-u5fj.onrender.com/allimages/${tvseries.thumbnail.regular.small}`}
-                  />
-
+                  <ImageAndBookmarkDiv>
+                    <TvSeriesPictures
+                      src={`https://entertainment-web-u5fj.onrender.com/allimages/${tvseries.thumbnail.regular.small}`}
+                    />
+                    {tvseries.isBookmarked ? (
+                      <BookmarkDiv>
+                        <img src={FullBookmark} />
+                      </BookmarkDiv>
+                    ) : (
+                      <BookmarkDiv>
+                        <img src={EmptyBookmark} />
+                      </BookmarkDiv>
+                    )}
+                  </ImageAndBookmarkDiv>
                   <DetailsDiv>
                     <Details>{tvseries.year}</Details>
                     <TvSerieLogo src={TvseriesLogo} />
@@ -154,10 +166,30 @@ const TvSeriesDiv = styled.div`
   padding-bottom: 61px;
 `;
 
+const ImageAndBookmarkDiv = styled.div`
+  position: relative;
+`;
+
 const TvSeriesPictures = styled.img`
   width: 164px;
   height: 110px;
   border-radius: 8px;
+`;
+
+const BookmarkDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  background: #10141e;
+  mix-blend-mode: normal;
+  opacity: 0.7;
+  border-radius: 50%;
+  overflow: hidden;
 `;
 
 const DetailsDiv = styled.div`

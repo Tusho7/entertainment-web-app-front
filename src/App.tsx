@@ -6,7 +6,7 @@ import TvSeries from "./Components/TvSeries";
 function App() {
   return (
     <div className="App">
-      <TvSeries />
+      <Home />
     </div>
   );
 }
