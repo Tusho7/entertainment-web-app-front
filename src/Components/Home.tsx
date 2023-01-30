@@ -10,6 +10,7 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { DataTypes } from "../types/data-type";
+import Header from "./Header";
 
 function Home() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -37,18 +38,7 @@ function Home() {
   });
   return (
     <div>
-      <NavigationContainer>
-        <div>
-          <img src={Logo} />
-        </div>
-
-        <Navigationdiv>
-          <Img src={HomeLogo} />
-          <Img src={MoviesLogo} />
-          <Img src={TvseriesLogo} />
-          <Img src={BookmarkLogo} />
-        </Navigationdiv>
-      </NavigationContainer>
+      <Header />
 
       <SearchContainer>
         <SearchLogo src={SearchIcon} alt="search-logo" />
@@ -156,24 +146,6 @@ function Home() {
 }
 
 export default Home;
-
-const NavigationContainer = styled.div`
-  display: grid;
-  grid-template-columns: auto auto auto;
-  align-items: center;
-  padding: 18px 16px;
-  background: #161d2f;
-`;
-
-const Navigationdiv = styled.div`
-  display: flex;
-  gap: 24px;
-`;
-
-const Img = styled.img`
-  width: 16px;
-  height: 16px;
-`;
 
 const SearchContainer = styled.div`
   padding-top: 27px;
