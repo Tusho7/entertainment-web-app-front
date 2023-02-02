@@ -16,7 +16,7 @@ function Home() {
   useEffect(() => {
     const data = async () => {
       const res = await axios.get(
-        "https://entertainment-web-u5fj.onrender.com/api/films"
+        "https://long-pink-pelican-cap.cyclic.app/api/films"
       );
       setListItems(res.data);
     };
@@ -57,7 +57,7 @@ function Home() {
                   <div>
                     <ImageAndBookmarkDiv>
                       <TrendingImg
-                        src={`https://entertainment-web-u5fj.onrender.com/allimages/${trending.thumbnail.regular.small}`}
+                        src={`https://long-pink-pelican-cap.cyclic.app/allimages/${trending.thumbnail.regular.small}`}
                       />
 
                       {trending.isBookmarked ? (
@@ -107,7 +107,7 @@ function Home() {
               <div>
                 <ImageAndBookmarkDiv>
                   <RecommendedPictures
-                    src={`https://entertainment-web-u5fj.onrender.com/allimages/${object.thumbnail.regular.small}`}
+                    src={`https://long-pink-pelican-cap.cyclic.app/allimages/${object.thumbnail.regular.small}`}
                   />
                   {object.isBookmarked ? (
                     <BookmarkDiv>
@@ -163,6 +163,7 @@ const TrendingDiv = styled.div`
 
 const ImageAndBookmarkDiv = styled.div`
   position: relative;
+  width: 164px;
 `;
 
 const BookmarkDiv = styled.div`

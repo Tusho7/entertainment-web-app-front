@@ -1,7 +1,38 @@
+import axios from "axios";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Logo from "../Images/logo.svg";
+import { LogIn } from "../types/data-type";
 
-function Login() {
+function Login({ setIsLogin }: LogIn) {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(
+        "https://long-pink-pelican-cap.cyclic.app/api/user/login",
+        {
+          email,
+          password,
+        }
+      );
+      console.log(response.status);
+
+      setIsLogin(true);
+
+      navigate("/home");
+    } catch (error) {
+      setError("Wrong email or password");
+      console.log(error);
+    }
+  };
+
   return (
     <MainContainer>
       <LogoContainer>
@@ -10,12 +41,23 @@ function Login() {
       <LoginContainer>
         <LoginText>Login</LoginText>
         <InputsContainer>
-          <form>
-            <Input placeholder="Email address" name="email" />
-            <span></span>
+          <form onSubmit={handleSubmit}>
+            <Input
+              placeholder="Email address"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <span>{error && error}</span>
 
-            <Input placeholder="Password" name="password" />
-            <span></span>
+            <Input
+              placeholder="Password"
+              name="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <span>{error && error}</span>
 
             <LoginButton type="submit">Login to your account</LoginButton>
           </form>

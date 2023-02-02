@@ -19,7 +19,7 @@ function TvSeries() {
   useEffect(() => {
     const data = async () => {
       const res = await axios.get(
-        "https://entertainment-web-u5fj.onrender.com/api/films"
+        "https://long-pink-pelican-cap.cyclic.app/api/films"
       );
       setListItems(res.data);
     };
@@ -55,7 +55,7 @@ function TvSeries() {
                 <div>
                   <ImageAndBookmarkDiv>
                     <TvSeriesPictures
-                      src={`https://entertainment-web-u5fj.onrender.com/allimages/${tvseries.thumbnail.regular.small}`}
+                      src={`https://long-pink-pelican-cap.cyclic.app/allimages/${tvseries.thumbnail.regular.small}`}
                     />
                     {tvseries.isBookmarked ? (
                       <BookmarkDiv>
@@ -136,6 +136,7 @@ const TvSeriesDiv = styled.div`
 
 const ImageAndBookmarkDiv = styled.div`
   position: relative;
+  width: 164px;
 `;
 
 const TvSeriesPictures = styled.img`

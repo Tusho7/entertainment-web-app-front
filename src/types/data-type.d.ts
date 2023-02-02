@@ -14,3 +14,7 @@ export interface DataTypes {
     isBookmarked: boolean;
     isTrending: boolean;
   }
+
+export interface LogIn {
+  setIsLogin: (n: boolean) => void;
+}
