@@ -2,13 +2,22 @@ import { useEffect, useState } from "react";
 import Header from "./Header";
 import SearchIcon from "../Images/icon-search.svg";
 import styled from "styled-components";
-import { DataTypes } from "../types/data-type";
+import { DataTypes, LogIn } from "../types/data-type";
 import FullBookmark from "../Images/icon-bookmark-full.svg";
 import MoviesLogo from "../Images/icon-nav-movies.svg";
 import axios from "axios";
 import TvseriesLogo from "../Images/icon-nav-tv-series.svg";
 
-function Bookmarked() {
+function Bookmarked({
+  setIsLogin,
+  handleeSubmit,
+  email,
+  setEmail,
+  password,
+  setPassword,
+  error,
+  user,
+}: LogIn) {
   const [searchTerm, setSearchTerm] = useState("");
   const [listItems, setListItems] = useState<DataTypes[]>([]);
 
@@ -46,7 +55,16 @@ function Bookmarked() {
 
   return (
     <div>
-      <Header />
+      <Header
+        setIsLogin={setIsLogin}
+        handleeSubmit={handleSubmit}
+        email={email}
+        setEmail={setEmail}
+        error={error}
+        password={password}
+        setPassword={setPassword}
+        user={user}
+      />
 
       <SearchContainer>
         <SearchLogo src={SearchIcon} alt="search-logo" />

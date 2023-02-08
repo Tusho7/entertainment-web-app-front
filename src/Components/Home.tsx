@@ -6,10 +6,19 @@ import FullBookmark from "../Images/icon-bookmark-full.svg";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { DataTypes } from "../types/data-type";
+import { DataTypes, LogIn } from "../types/data-type";
 import Header from "./Header";
 
-function Home() {
+function Home({
+  setIsLogin,
+  handleeSubmit,
+  email,
+  setEmail,
+  password,
+  setPassword,
+  error,
+  user,
+}: LogIn) {
   const [searchTerm, setSearchTerm] = useState("");
   const [listItems, setListItems] = useState<DataTypes[]>([]);
 
@@ -35,7 +44,16 @@ function Home() {
   });
   return (
     <div>
-      <Header />
+      <Header
+        setIsLogin={setIsLogin}
+        handleeSubmit={handleSubmit}
+        email={email}
+        setEmail={setEmail}
+        error={error}
+        password={password}
+        setPassword={setPassword}
+        user={user}
+      />
 
       <SearchContainer>
         <SearchLogo src={SearchIcon} alt="search-logo" />
@@ -163,7 +181,6 @@ const TrendingDiv = styled.div`
 
 const ImageAndBookmarkDiv = styled.div`
   position: relative;
-  width: 164px;
 `;
 
 const BookmarkDiv = styled.div`

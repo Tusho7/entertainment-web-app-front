@@ -5,10 +5,19 @@ import FullBookmark from "../Images/icon-bookmark-full.svg";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { DataTypes } from "../types/data-type";
+import { DataTypes, LogIn } from "../types/data-type";
 import Header from "./Header";
 
-function Movies() {
+function Movies({
+  setIsLogin,
+  handleeSubmit,
+  email,
+  setEmail,
+  password,
+  setPassword,
+  error,
+  user,
+}: LogIn) {
   const [searchTerm, setSearchTerm] = useState("");
   const [listItems, setListItems] = useState<DataTypes[]>([]);
 
@@ -34,7 +43,16 @@ function Movies() {
 
   return (
     <div>
-      <Header />
+      <Header
+        setIsLogin={setIsLogin}
+        handleeSubmit={handleSubmit}
+        email={email}
+        setEmail={setEmail}
+        error={error}
+        password={password}
+        setPassword={setPassword}
+        user={user}
+      />
 
       <SearchContainer>
         <SearchLogo src={SearchIcon} alt="search-logo" />
