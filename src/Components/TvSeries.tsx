@@ -42,7 +42,7 @@ function TvSeries({
   });
 
   return (
-    <div>
+    <MainDiv>
       <Header
         setIsLogin={setIsLogin}
         handleeSubmit={handleSubmit}
@@ -53,65 +53,83 @@ function TvSeries({
         setPassword={setPassword}
         user={user}
       />
-
-      <SearchContainer>
-        <SearchLogo src={SearchIcon} alt="search-logo" />
-        <SearchInput
-          type="text"
-          placeholder="Search for movies or TV series"
-          value={searchTerm}
-          onChange={handleSubmit}
-        />
-      </SearchContainer>
-
       <div>
-        <>
-          <Title>TV Series</Title>
-          <TvSeriesDiv>
-            {filteredTvSeries.map((tvseries) => {
-              return (
-                <div>
-                  <ImageAndBookmarkDiv>
-                    <TvSeriesPictures
-                      src={`https://long-pink-pelican-cap.cyclic.app/allimages/${tvseries.thumbnail.regular.small}`}
-                    />
-                    {tvseries.isBookmarked ? (
-                      <BookmarkDiv>
-                        <img src={FullBookmark} />
-                      </BookmarkDiv>
-                    ) : (
-                      <BookmarkDiv>
-                        <img src={EmptyBookmark} />
-                      </BookmarkDiv>
-                    )}
-                  </ImageAndBookmarkDiv>
-                  <DetailsDiv>
-                    <Details>{tvseries.year}</Details>
-                    <TvSerieLogo src={TvseriesLogo} />
+        <SearchContainer>
+          <SearchLogo src={SearchIcon} alt="search-logo" />
+          <SearchInput
+            type="text"
+            placeholder="Search for movies or TV series"
+            value={searchTerm}
+            onChange={handleSubmit}
+          />
+        </SearchContainer>
 
-                    <Details>{tvseries.category}</Details>
+        <div>
+          <>
+            <Title>TV Series</Title>
+            <TvSeriesDiv>
+              {filteredTvSeries.map((tvseries) => {
+                return (
+                  <div>
+                    <ImageAndBookmarkDiv>
+                      <TvSeriesPictures
+                        src={`https://long-pink-pelican-cap.cyclic.app/allimages/${tvseries.thumbnail.regular.small}`}
+                      />
+                      {tvseries.isBookmarked ? (
+                        <BookmarkDiv>
+                          <img src={FullBookmark} />
+                        </BookmarkDiv>
+                      ) : (
+                        <BookmarkDiv>
+                          <img src={EmptyBookmark} />
+                        </BookmarkDiv>
+                      )}
+                    </ImageAndBookmarkDiv>
+                    <DetailsDiv>
+                      <Details>{tvseries.year}</Details>
+                      <TvSerieLogo src={TvseriesLogo} />
 
-                    <Details>{tvseries.rating}</Details>
-                  </DetailsDiv>
+                      <Details>{tvseries.category}</Details>
 
-                  <TitleDiv>
-                    <p>{tvseries.title}</p>
-                  </TitleDiv>
-                </div>
-              );
-            })}
-          </TvSeriesDiv>
-        </>
+                      <Details>{tvseries.rating}</Details>
+                    </DetailsDiv>
+
+                    <TitleDiv>
+                      <p>{tvseries.title}</p>
+                    </TitleDiv>
+                  </div>
+                );
+              })}
+            </TvSeriesDiv>
+          </>
+        </div>
       </div>
-    </div>
+    </MainDiv>
   );
 }
 
 export default TvSeries;
 
+const MainDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 1440px) {
+    flex-direction: row;
+    padding-left: 32px;
+  }
+`;
+
 const SearchContainer = styled.div`
+  display: flex;
+  align-items: center;
   padding-top: 27px;
   padding-left: 19px;
+  @media (min-width: 768px) {
+    padding-left: 25px;
+  }
+  @media (min-width: 1440px) {
+    padding-top: 32px;
+  }
 `;
 
 const SearchLogo = styled.img`
@@ -119,6 +137,10 @@ const SearchLogo = styled.img`
   height: 18px;
   margin-right: 19px;
   vertical-align: middle;
+  @media (min-width: 768px) {
+    width: 24px;
+    height: 24px;
+  }
 `;
 
 const SearchInput = styled.input`
@@ -131,6 +153,9 @@ const SearchInput = styled.input`
   color: #ffffff;
   mix-blend-mode: normal;
   opacity: 0.5;
+  @media (min-width: 768px) {
+    font-size: 24px;
+  }
 `;
 
 const Title = styled.p`
@@ -140,6 +165,13 @@ const Title = styled.p`
   line-height: 25px;
   letter-spacing: -0.3125px;
   color: #ffffff;
+  @media (min-width: 768px) {
+    font-size: 32px;
+    padding-left: 25px;
+  }
+  @media (min-width: 1440px) {
+    padding-top: 35px;
+  }
 `;
 
 const TvSeriesDiv = styled.div`
@@ -150,17 +182,45 @@ const TvSeriesDiv = styled.div`
   grid-template-columns: auto auto;
   overflow-x: hidden;
   padding-bottom: 61px;
+  @media (min-width: 768px) {
+    grid-template-columns: auto auto auto;
+    padding-left: 25px;
+    padding-right: 25px;
+    column-gap: 29px;
+    row-gap: 24px;
+  }
+  @media (min-width: 1440px) {
+    grid-template-columns: 280px 280px 280px 280px;
+    column-gap: 40px;
+    row-gap: 32px;
+    padding-top: 32px;
+  }
 `;
 
 const ImageAndBookmarkDiv = styled.div`
   position: relative;
   width: 164px;
+  @media (min-width: 768px) {
+    width: 220px;
+    max-width: 220px;
+  }
+  @media (min-width: 1440px) {
+    max-width: 100%;
+    width: 280px;
+  }
 `;
 
 const TvSeriesPictures = styled.img`
   width: 164px;
   height: 110px;
   border-radius: 8px;
+  @media (min-width: 768px) {
+    width: 220px;
+  }
+  @media (min-width: 1440px) {
+    width: 280px;
+    height: 174px;
+  }
 `;
 
 const BookmarkDiv = styled.div`
@@ -177,6 +237,13 @@ const BookmarkDiv = styled.div`
   opacity: 0.7;
   border-radius: 50%;
   overflow: hidden;
+  @media (min-width: 768px) {
+    right: 16px;
+  }
+  @media (min-width: 1440px) {
+    right: 16px;
+    top: 16px;
+  }
 `;
 
 const DetailsDiv = styled.div`
@@ -192,6 +259,9 @@ const Details = styled.p`
   color: #ffffff;
   mix-blend-mode: normal;
   opacity: 0.75;
+  @media (min-width: 768px) {
+    font-size: 13px;
+  }
 `;
 
 const TvSerieLogo = styled.img`
@@ -203,6 +273,8 @@ const TitleDiv = styled.div`
   color: #ffffff;
   font-weight: 500;
   font-size: 14px;
-  line-height: 18px;
   padding-top: 6px;
+  @media (min-width: 768px) {
+    font-size: 18px;
+  }
 `;

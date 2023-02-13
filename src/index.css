@@ -1,14 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;500&display=swap");
+*:not(trending-container) {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
-body{
-    width: 100vw;
-    min-height: 100vh;
-    background: #10141E;
-    font-family: 'Outfit';
-    font-style: normal;
+body {
+  width: 100vw;
+  min-height: 100vh;
+  background: #10141e;
+  font-family: "Outfit";
+  font-style: normal;
 }
+
+.trending-container {
+  width: 240px;
+  overflow-x: unset;
+}
+
+@media (min-width: 768px) {
+  .trending-container {
+    width: 470px;
+  }
+}
+

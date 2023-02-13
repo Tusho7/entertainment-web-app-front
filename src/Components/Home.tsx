@@ -43,7 +43,7 @@ function Home({
     return film.title.toLowerCase().includes(searchTerm.toLowerCase());
   });
   return (
-    <div>
+    <MainDiv>
       <Header
         setIsLogin={setIsLogin}
         handleeSubmit={handleSubmit}
@@ -54,117 +54,135 @@ function Home({
         setPassword={setPassword}
         user={user}
       />
-
-      <SearchContainer>
-        <SearchLogo src={SearchIcon} alt="search-logo" />
-        <SearchInput
-          type="text"
-          placeholder="Search for movies or TV series"
-          value={searchTerm}
-          onChange={handleSubmit}
-        />
-      </SearchContainer>
-
       <div>
-        {searchTerm.length === 0 && (
-          <>
-            <Title>Trending</Title>
-            <TrendingDiv>
-              {trendingFilms.map((trending) => {
-                return (
-                  <div>
-                    <ImageAndBookmarkDiv>
-                      <TrendingImg
-                        src={`https://long-pink-pelican-cap.cyclic.app/allimages/${trending.thumbnail.regular.small}`}
-                      />
+        <SearchContainer>
+          <SearchLogo src={SearchIcon} alt="search-logo" />
+          <SearchInput
+            type="text"
+            placeholder="Search for movies or TV series"
+            value={searchTerm}
+            onChange={handleSubmit}
+          />
+        </SearchContainer>
 
-                      {trending.isBookmarked ? (
-                        <BookmarkDiv>
-                          <img src={FullBookmark} />
-                        </BookmarkDiv>
-                      ) : (
-                        <BookmarkDiv>
-                          <img src={EmptyBookmark} />
-                        </BookmarkDiv>
-                      )}
-                    </ImageAndBookmarkDiv>
+        <div>
+          {searchTerm.length === 0 && (
+            <>
+              <Title>Trending</Title>
+              <TrendingDiv>
+                {trendingFilms.map((trending) => {
+                  return (
+                    <div className="trending-container">
+                      <ImageAndBookmarkDivTrending>
+                        <TrendingImg
+                          src={`https://long-pink-pelican-cap.cyclic.app/allimages/${trending.thumbnail.regular.small}`}
+                        />
 
-                    <TrendingLists>
-                      <TrendingYearCategoryAndRating>
-                        <p>{trending.year}</p>
-                        <TrendingOnlyCategory>
-                          {trending.category === "Movie" && (
-                            <MovieLogo src={MoviesLogo} />
-                          )}
-                          {trending.category === "TV Series" && (
-                            <TvSerieLogo src={TvseriesLogo} />
-                          )}
-                          <p>{trending.category}</p>
+                        {trending.isBookmarked ? (
+                          <TrendingBookmarkDiv>
+                            <img src={FullBookmark} />
+                          </TrendingBookmarkDiv>
+                        ) : (
+                          <TrendingBookmarkDiv>
+                            <img src={EmptyBookmark} />
+                          </TrendingBookmarkDiv>
+                        )}
+                      </ImageAndBookmarkDivTrending>
 
-                          <p>{trending.rating}</p>
-                        </TrendingOnlyCategory>
-                      </TrendingYearCategoryAndRating>
+                      <TrendingLists>
+                        <TrendingYearCategoryAndRating>
+                          <p>{trending.year}</p>
+                          <TrendingOnlyCategory>
+                            {trending.category === "Movie" && (
+                              <MovieLogo src={MoviesLogo} />
+                            )}
+                            {trending.category === "TV Series" && (
+                              <TvSerieLogo src={TvseriesLogo} />
+                            )}
+                            <p>{trending.category}</p>
 
-                      <TrendingTitle>{trending.title}</TrendingTitle>
-                    </TrendingLists>
+                            <p>{trending.rating}</p>
+                          </TrendingOnlyCategory>
+                        </TrendingYearCategoryAndRating>
 
-                    <div></div>
-                  </div>
-                );
-              })}
-            </TrendingDiv>
-          </>
-        )}
+                        <TrendingTitle>{trending.title}</TrendingTitle>
+                      </TrendingLists>
+                    </div>
+                  );
+                })}
+              </TrendingDiv>
+            </>
+          )}
+        </div>
+
+        <div>
+          <Title>Recommended for you</Title>
+          <RecommendedDiv>
+            {filteredMovies.map((object) => {
+              return (
+                <div>
+                  <ImageAndBookmarkDiv>
+                    <RecommendedPictures
+                      src={`https://long-pink-pelican-cap.cyclic.app/allimages/${object.thumbnail.regular.small}`}
+                    />
+                    {object.isBookmarked ? (
+                      <BookmarkDiv>
+                        <img src={FullBookmark} />
+                      </BookmarkDiv>
+                    ) : (
+                      <BookmarkDiv>
+                        <img src={EmptyBookmark} />
+                      </BookmarkDiv>
+                    )}
+                  </ImageAndBookmarkDiv>
+                  <DetailsDiv>
+                    <Details>{object.year}</Details>
+                    {object.category === "Movie" && (
+                      <MovieLogo src={MoviesLogo} />
+                    )}
+                    {object.category === "TV Series" && (
+                      <TvSerieLogo src={TvseriesLogo} />
+                    )}
+                    <Details>{object.category}</Details>
+                    <Details>{object.rating}</Details>
+                  </DetailsDiv>
+                  <TitleDiv>
+                    <p>{object.title}</p>
+                  </TitleDiv>
+                </div>
+              );
+            })}
+          </RecommendedDiv>
+        </div>
       </div>
-
-      <div>
-        <Title>Recommended for you</Title>
-        <RecommendedDiv>
-          {filteredMovies.map((object) => {
-            return (
-              <div>
-                <ImageAndBookmarkDiv>
-                  <RecommendedPictures
-                    src={`https://long-pink-pelican-cap.cyclic.app/allimages/${object.thumbnail.regular.small}`}
-                  />
-                  {object.isBookmarked ? (
-                    <BookmarkDiv>
-                      <img src={FullBookmark} />
-                    </BookmarkDiv>
-                  ) : (
-                    <BookmarkDiv>
-                      <img src={EmptyBookmark} />
-                    </BookmarkDiv>
-                  )}
-                </ImageAndBookmarkDiv>
-                <DetailsDiv>
-                  <Details>{object.year}</Details>
-                  {object.category === "Movie" && (
-                    <MovieLogo src={MoviesLogo} />
-                  )}
-                  {object.category === "TV Series" && (
-                    <TvSerieLogo src={TvseriesLogo} />
-                  )}
-                  <Details>{object.category}</Details>
-                  <Details>{object.rating}</Details>
-                </DetailsDiv>
-                <TitleDiv>
-                  <p>{object.title}</p>
-                </TitleDiv>
-              </div>
-            );
-          })}
-        </RecommendedDiv>
-      </div>
-    </div>
+    </MainDiv>
   );
 }
 
 export default Home;
 
+const MainDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 1440px) {
+    flex-direction: row;
+    padding-left: 32px;
+  }
+`;
+
 const SearchContainer = styled.div`
+  display: flex;
+  align-items: center;
   padding-top: 27px;
   padding-left: 19px;
+  @media (min-width: 768px) {
+    padding-left: 25px;
+  }
+  @media (min-width: 1440px) {
+    padding-top: 32px;
+    border: none;
+    width: 100%;
+  }
 `;
 
 const TrendingDiv = styled.div`
@@ -177,10 +195,53 @@ const TrendingDiv = styled.div`
   font-size: 15px;
   line-height: 19px;
   color: #ffffff;
+  overflow-y: hidden;
+  @media (min-width: 768px) {
+    padding-left: 25px;
+    gap: 40px;
+  }
+  @media (min-width: 1440px) {
+    padding-top: 0px;
+  }
+`;
+
+const ImageAndBookmarkDivTrending = styled.div`
+  position: relative;
+  width: 240px;
+  @media (min-width: 768px) {
+    width: 470px;
+  }
 `;
 
 const ImageAndBookmarkDiv = styled.div`
   position: relative;
+  max-width: 164px;
+  @media (min-width: 768px) {
+    max-width: 220px;
+  }
+  @media (min-width: 1440px) {
+    max-width: 280px;
+  }
+`;
+
+const TrendingBookmarkDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #10141e;
+  mix-blend-mode: normal;
+  opacity: 0.7;
+  border-radius: 50%;
+  overflow: hidden;
+  @media (min-width: 768px) {
+    right: 24px;
+    top: 16px;
+  }
 `;
 
 const BookmarkDiv = styled.div`
@@ -197,18 +258,35 @@ const BookmarkDiv = styled.div`
   opacity: 0.7;
   border-radius: 50%;
   overflow: hidden;
+  @media (min-width: 768px) {
+    right: 16px;
+    top: 16px;
+  }
+  @media (min-width: 1440px) {
+    top: 16px;
+  }
 `;
 
 const TrendingLists = styled.div`
   position: absolute;
   top: 105px;
   padding-left: 16px;
+  @media (min-width: 768px) {
+    top: 180px;
+  }
+  @media (min-width: 1440px) {
+    top: 154px;
+  }
 `;
 
 const TrendingImg = styled.img`
   width: 240px;
   height: 140px;
   border-radius: 8px;
+  @media (min-width: 768px) {
+    width: 470px;
+    height: 230px;
+  }
 `;
 
 const TrendingYearCategoryAndRating = styled.div`
@@ -219,6 +297,13 @@ const TrendingYearCategoryAndRating = styled.div`
 
 const TrendingTitle = styled.p`
   padding-top: 5px;
+  @media (min-width: 768px) {
+    font-size: 24px;
+    padding-top: 6px;
+  }
+  @media (min-width: 1440px) {
+    padding-top: 11px;
+  }
 `;
 
 const TrendingOnlyCategory = styled.div`
@@ -245,12 +330,34 @@ const RecommendedDiv = styled.div`
   grid-template-columns: auto auto;
   overflow-x: hidden;
   padding-bottom: 61px;
+  @media (min-width: 768px) {
+    grid-template-columns: auto auto auto;
+    padding-left: 25px;
+    padding-right: 25px;
+    column-gap: 29px;
+    row-gap: 24px;
+  }
+  @media (min-width: 1440px) {
+    grid-template-columns: auto auto auto auto;
+    column-gap: 40px;
+    row-gap: 32px;
+    padding-top: 0px;
+    max-width: 1290px;
+  }
 `;
 
 const RecommendedPictures = styled.img`
   width: 164px;
   height: 110px;
   border-radius: 8px;
+  @media (min-width: 768px) {
+    width: 220px;
+    height: 140px;
+  }
+  @media (min-width: 1440px) {
+    width: 280px;
+    height: 174px;
+  }
 `;
 
 const DetailsDiv = styled.div`
@@ -264,8 +371,9 @@ const Details = styled.p`
   font-size: 11px;
   line-height: 14px;
   color: #ffffff;
-  mix-blend-mode: normal;
-  opacity: 0.75;
+  @media (min-width: 768px) {
+    font-size: 13px;
+  }
 `;
 
 const SearchLogo = styled.img`
@@ -273,6 +381,10 @@ const SearchLogo = styled.img`
   height: 18px;
   margin-right: 19px;
   vertical-align: middle;
+  @media (min-width: 768px) {
+    width: 24px;
+    height: 24px;
+  }
 `;
 
 const SearchInput = styled.input`
@@ -285,6 +397,9 @@ const SearchInput = styled.input`
   color: #ffffff;
   mix-blend-mode: normal;
   opacity: 0.5;
+  @media (min-width: 768px) {
+    font-size: 24px;
+  }
 `;
 
 const Title = styled.p`
@@ -294,12 +409,23 @@ const Title = styled.p`
   line-height: 25px;
   letter-spacing: -0.3125px;
   color: #ffffff;
+  @media (min-width: 768px) {
+    padding-left: 25px;
+    font-size: 32px;
+    padding-top: 34px;
+  }
+  @media (min-width: 1440px) {
+    padding-top: 40px;
+    padding-bottom: 25px;
+  }
 `;
 
 const TitleDiv = styled.div`
   color: #ffffff;
   font-weight: 500;
   font-size: 14px;
-  line-height: 18px;
   padding-top: 6px;
+  @media (min-width: 768px) {
+    font-size: 18px;
+  }
 `;

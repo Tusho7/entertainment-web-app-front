@@ -58,6 +58,19 @@ export default Login;
 const MainContainer = styled.div`
   padding-left: 24px;
   padding-right: 24px;
+
+  @media (min-width: 768px) {
+    padding-top: 80px;
+    padding-left: 184px;
+    padding-right: 184px;
+    padding-bottom: 473px;
+  }
+  @media (min-width: 1440px) {
+    padding-top: 187px;
+    padding-left: 520px;
+    padding-right: 520px;
+    padding-bottom: 250px;
+  }
 `;
 
 const LogoContainer = styled.div`
@@ -66,6 +79,12 @@ const LogoContainer = styled.div`
   padding-top: 48px;
   padding-bottom: 58px;
   text-align: center;
+  @media (min-width: 768px) {
+    padding-top: 0px;
+  }
+  @media (min-width: 1440px) {
+    padding-bottom: 83px;
+  }
 `;
 
 const LoginContainer = styled.div`
@@ -79,6 +98,10 @@ const LoginContainer = styled.div`
   line-height: 19px;
   text-align: center;
   color: #ffffff;
+  @media (min-width: 768px) {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
 `;
 
 const LoginText = styled.h1`
@@ -87,12 +110,23 @@ const LoginText = styled.h1`
   text-align: left;
   padding-left: 24px;
   letter-spacing: -0.5px;
+  @media (min-width: 768px) {
+    padding-left: 32px;
+  }
 `;
 
 const InputsContainer = styled.div`
   width: 100%;
   padding-left: 24px;
   padding-right: 24px;
+  @media (min-width: 768px) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  @media (min-width: 1440px) {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
 `;
 
 const Input = styled.input`
@@ -112,6 +146,9 @@ const Input = styled.input`
     opacity: 0.8;
     cursor: pointer;
   }
+  @media (min-width: 768px) {
+    font-size: 15px;
+  }
 `;
 
 const LoginButton = styled.button`
@@ -124,6 +161,10 @@ const LoginButton = styled.button`
   &:hover {
     background: #ffffff;
     cursor: pointer;
+  }
+  @media (min-width: 768px) {
+    width: 100%;
+    font-size: 15px;
   }
 `;
 
