@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { DataTypes, LogIn } from "../types/data-type";
 import Header from "./Header";
+import { keyframes } from "styled-components";
 
 function Home({
   setIsLogin,
@@ -25,7 +26,7 @@ function Home({
   useEffect(() => {
     const data = async () => {
       const res = await axios.get(
-        "https://long-pink-pelican-cap.cyclic.app/api/films"
+        "https://entertainment-web-2qzi.onrender.com/api/films"
       );
       setListItems(res.data);
     };
@@ -72,10 +73,13 @@ function Home({
               <TrendingDiv>
                 {trendingFilms.map((trending) => {
                   return (
-                    <div className="trending-container">
+                    <TrendingContainer
+                      className="trending-container"
+                      key={trending.id}
+                    >
                       <ImageAndBookmarkDivTrending>
                         <TrendingImg
-                          src={`https://long-pink-pelican-cap.cyclic.app/allimages/${trending.thumbnail.regular.small}`}
+                          src={`https://entertainment-web-2qzi.onrender.com/allimages/${trending.thumbnail.regular.small}`}
                         />
 
                         {trending.isBookmarked ? (
@@ -107,7 +111,7 @@ function Home({
 
                         <TrendingTitle>{trending.title}</TrendingTitle>
                       </TrendingLists>
-                    </div>
+                    </TrendingContainer>
                   );
                 })}
               </TrendingDiv>
@@ -120,10 +124,10 @@ function Home({
           <RecommendedDiv>
             {filteredMovies.map((object) => {
               return (
-                <div>
+                <div key={object.id}>
                   <ImageAndBookmarkDiv>
                     <RecommendedPictures
-                      src={`https://long-pink-pelican-cap.cyclic.app/allimages/${object.thumbnail.regular.small}`}
+                      src={`https://entertainment-web-2qzi.onrender.com/allimages/${object.thumbnail.regular.small}`}
                     />
                     {object.isBookmarked ? (
                       <BookmarkDiv>
@@ -185,12 +189,22 @@ const SearchContainer = styled.div`
   }
 `;
 
+const myAnimation = keyframes`
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(calc(-100% * 4));
+  }
+`;
+
 const TrendingDiv = styled.div`
   position: relative;
   padding: 27px 16px 0px;
   display: flex;
   gap: 16px;
-  overflow-x: scroll;
+  width: 100%;
+  overflow: hidden;
   font-weight: 500;
   font-size: 15px;
   line-height: 19px;
@@ -203,6 +217,12 @@ const TrendingDiv = styled.div`
   @media (min-width: 1440px) {
     padding-top: 0px;
   }
+`;
+
+const TrendingContainer = styled.div`
+  animation: ${myAnimation} 20s linear infinite;
+  white-space: nowrap;
+  display: inline-block;
 `;
 
 const ImageAndBookmarkDivTrending = styled.div`
@@ -269,13 +289,13 @@ const BookmarkDiv = styled.div`
 
 const TrendingLists = styled.div`
   position: absolute;
-  top: 105px;
+  top: 85px;
   padding-left: 16px;
   @media (min-width: 768px) {
-    top: 180px;
+    top: 160px;
   }
   @media (min-width: 1440px) {
-    top: 154px;
+    top: 145px;
   }
 `;
 
@@ -297,6 +317,7 @@ const TrendingYearCategoryAndRating = styled.div`
 
 const TrendingTitle = styled.p`
   padding-top: 5px;
+  overflow-y: hidden;
   @media (min-width: 768px) {
     font-size: 24px;
     padding-top: 6px;
@@ -371,6 +392,7 @@ const Details = styled.p`
   font-size: 11px;
   line-height: 14px;
   color: #ffffff;
+  overflow-y: hidden;
   @media (min-width: 768px) {
     font-size: 13px;
   }
@@ -409,6 +431,7 @@ const Title = styled.p`
   line-height: 25px;
   letter-spacing: -0.3125px;
   color: #ffffff;
+  overflow-y: hidden;
   @media (min-width: 768px) {
     padding-left: 25px;
     font-size: 32px;

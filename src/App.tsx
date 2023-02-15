@@ -5,6 +5,7 @@ import Bookmarked from "./Components/Bookmarked";
 import Home from "./Components/Home";
 import Login from "./Components/Login";
 import Movies from "./Components/Movies";
+import SignUp from "./Components/SignUp";
 import TvSeries from "./Components/TvSeries";
 
 function App() {
@@ -33,7 +34,7 @@ function App() {
 
     try {
       const response = await axios.post(
-        "https://long-pink-pelican-cap.cyclic.app/api/user/login",
+        "https://entertainment-web-2qzi.onrender.com/api/user/login",
         {
           email,
           password,
@@ -60,12 +61,11 @@ function App() {
         },
       };
       const userResponse = await axios.get(
-        "https://long-pink-pelican-cap.cyclic.app/api/user",
+        "https://entertainment-web-2qzi.onrender.com/api/user",
         config
       );
       const userData = userResponse.data;
       setUser(userData);
-      console.log(userData);
       navigate("/home");
     } catch (error) {
       setError("Wrong email or password");
@@ -157,6 +157,21 @@ function App() {
                 />
               }
             ></Route>
+            <Route
+              path="/signup"
+              element={
+                <SignUp
+                  setIsLogin={setIsLogin}
+                  handleeSubmit={handleSubmit}
+                  email={email}
+                  setEmail={setEmail}
+                  error={error}
+                  password={password}
+                  setPassword={setPassword}
+                  user={user}
+                />
+              }
+            />
           </>
         )}
       </Routes>

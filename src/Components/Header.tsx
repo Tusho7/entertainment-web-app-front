@@ -50,7 +50,7 @@ function Header({
         </Navigationdiv>
 
         <LogoutDiv>
-          <p onClick={buttonHandler}>Logout</p>
+          <LogoutButton onClick={buttonHandler}>Logout</LogoutButton>
           <AvatarImg
             alt=""
             src={process.env.REACT_APP_SERVER_URL + user.avatar}
@@ -111,6 +111,7 @@ const LogoutDiv = styled.div`
   font-size: 15px;
   line-height: 19px;
   color: #ffffff;
+  gap: 10px;
   @media (min-width: 768px) {
     font-size: 18px;
   }
@@ -140,5 +141,33 @@ const Img = styled.img`
   @media (min-width: 768px) {
     width: 20px;
     height: 20px;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const LogoutButton = styled.button`
+  background: no-repeat 5px 5px #484b4f;
+  overflow-y: hidden;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 40px;
+  border: 2px solid black;
+  padding: 10px 20px 10px 0;
+  color: White;
+  font-size: 18px;
+  text-align: center;
+  text-indent: 20px;
+  height: auto;
+  margin: auto;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.4s;
+  transition-property: all;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.5s;
+  transition-property: all;
+  &:hover {
+    padding-top: 20px;
   }
 `;

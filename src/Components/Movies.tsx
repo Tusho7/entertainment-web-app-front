@@ -28,7 +28,7 @@ function Movies({
   useEffect(() => {
     const data = async () => {
       const res = await axios.get(
-        "https://long-pink-pelican-cap.cyclic.app/api/films"
+        "https://entertainment-web-2qzi.onrender.com/api/films"
       );
       setListItems(res.data);
     };
@@ -70,10 +70,10 @@ function Movies({
             <MoviesDiv>
               {filteredMovies.map((movie) => {
                 return (
-                  <div>
+                  <div key={movie.id}>
                     <ImageAndBookmarkDiv>
                       <MoviesPictures
-                        src={`https://long-pink-pelican-cap.cyclic.app/allimages/${movie.thumbnail.regular.small}`}
+                        src={`https://entertainment-web-2qzi.onrender.com/allimages/${movie.thumbnail.regular.small}`}
                       />
                       {movie.isBookmarked ? (
                         <BookmarkDiv>
@@ -167,6 +167,7 @@ const Title = styled.p`
   line-height: 25px;
   letter-spacing: -0.3125px;
   color: #ffffff;
+  overflow-y: hidden;
   @media (min-width: 768px) {
     font-size: 32px;
     padding-left: 25px;
@@ -260,6 +261,7 @@ const Details = styled.p`
   color: #ffffff;
   mix-blend-mode: normal;
   opacity: 0.75;
+  overflow-y: hidden;
   @media (min-width: 768px) {
     font-size: 13px;
   }

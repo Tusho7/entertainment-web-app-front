@@ -1,6 +1,4 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Logo from "../Images/logo.svg";
 import { LogIn } from "../types/data-type";
@@ -46,7 +44,7 @@ function Login({
 
         <LoginFooterText>
           <p>Don't have an account?</p>
-          <SignUp>Sign Up</SignUp>
+          <SignUpLink to="/SignUp">Sign Up</SignUpLink>
         </LoginFooterText>
       </LoginContainer>
     </MainContainer>
@@ -174,6 +172,9 @@ const LoginFooterText = styled.div`
   gap: 9px;
 `;
 
-const SignUp = styled.p`
+const SignUpLink = styled(Link)`
+  font-weight: 300;
+  font-size: 15px;
   color: #fc4747;
+  text-decoration: none;
 `;
