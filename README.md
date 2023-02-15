@@ -23,7 +23,7 @@
 
 - <img src="readme/react.png" width="25" style="top: 8px" /> React @18.2.0 - front-end framework
 - <img src="readme/styledcomponents.png" width="25" style="top: 8px" /> Styled Components @5.3.6 - CSS framework
-- <img src="readme/axios.js.png" width="25" style="top: 8px" /> Axios @1.2.3 - Promise based HTTP client for the browser and node.js
+- <img src="readme/axios.png" width="25" style="top: 8px" /> Axios @1.2.3 - Promise based HTTP client for the browser and node.js
 
 #
 
