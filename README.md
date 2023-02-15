@@ -15,7 +15,7 @@
 
 - <img src="readme/nodejs.png" width="25" style="top: 8px" /> Node JS @16.X and up
 - <img src="readme/npm.png" width="25" style="top: 8px" /> npm @8 and up
-- <img src="readme/typescript.js.png" width="25" style="top: 8px" /> Typescript @4 and up
+- <img src="readme/typescript.png" width="25" style="top: 8px" /> Typescript @4 and up
 
 #
 
